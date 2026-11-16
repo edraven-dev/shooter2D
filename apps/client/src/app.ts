@@ -41,7 +41,7 @@ export class App {
         h('button', { className: 'primary', onclick: () => (remember(), void this.#quickPlay()) }, 'Play'),
         h('button', { onclick: () => (remember(), this.showServers()) }, 'Server list'),
         notice && h('p', { className: 'notice', role: 'alert' }, notice),
-        h('p', { className: 'help' }, 'W/S move · A/D turn · Q/E strafe · Left Ctrl fire · R reload · 1/2 weapons'),
+        h('p', { className: 'help' }, 'W/S move · A/D turn · Q/E strafe · Space fire · R reload · 1/2 weapons'),
       ),
     );
     input.focus();

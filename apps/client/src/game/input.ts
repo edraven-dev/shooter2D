@@ -1,6 +1,6 @@
 import { Button } from '@shooter2d/sim-wasm';
 
-/** Tank controls, as in the original game, firing with Left Ctrl. */
+/** Tank controls, as in the original game. */
 const KEY_BUTTONS: Readonly<Record<string, Button>> = {
   KeyW: Button.Forward,
   ArrowUp: Button.Forward,
@@ -12,7 +12,7 @@ const KEY_BUTTONS: Readonly<Record<string, Button>> = {
   ArrowRight: Button.TurnRight,
   KeyQ: Button.StrafeLeft,
   KeyE: Button.StrafeRight,
-  ControlLeft: Button.Fire,
+  Space: Button.Fire,
   KeyR: Button.Reload,
   Digit1: Button.SelectRifle,
   Digit2: Button.SelectPistol,
@@ -56,13 +56,9 @@ export class Keyboard {
   }
 
   readonly #onKeyDown = (event: KeyboardEvent): void => {
-    // Ctrl is the fire button, so holding it must not mute the other game keys. Combinations
-    // with Alt or Meta stay with the browser and the OS.
-    if (!(event.code in KEY_BUTTONS) || event.altKey || event.metaKey) {
+    if (!(event.code in KEY_BUTTONS) || event.ctrlKey || event.metaKey || event.altKey) {
       return;
     }
-    // Keeps Ctrl+R, Ctrl+D, Ctrl+1… from reloading, bookmarking or switching tabs mid-fight.
-    // Ctrl+W cannot be stopped this way; the game asks before the tab closes instead.
     event.preventDefault();
     this.#held.add(event.code);
     this.#tapped.add(event.code);
