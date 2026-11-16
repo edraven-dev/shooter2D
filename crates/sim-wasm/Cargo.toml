@@ -1,0 +1,19 @@
+[package]
+name = "sim-wasm"
+description = "wasm-bindgen bindings exposing the simulation and wire codec to the browser client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+protocol.workspace = true
+serde-wasm-bindgen.workspace = true
+sim.workspace = true
+wasm-bindgen.workspace = true
+
+[lints]
+workspace = true
