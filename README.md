@@ -70,7 +70,7 @@ pnpm dev
 Vite (`:8080`). Open <http://localhost:8080> in two windows to play against yourself.
 
 Controls: <kbd>W</kbd>/<kbd>S</kbd> move, <kbd>A</kbd>/<kbd>D</kbd> turn, <kbd>Q</kbd>/<kbd>E</kbd>
-strafe, <kbd>Space</kbd> fire, <kbd>R</kbd> reload, <kbd>1</kbd>/<kbd>2</kbd> rifle/pistol.
+strafe, <kbd>Left Ctrl</kbd> fire, <kbd>R</kbd> reload, <kbd>1</kbd>/<kbd>2</kbd> rifle/pistol.
 
 ## Commands
 

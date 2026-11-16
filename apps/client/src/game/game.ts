@@ -94,6 +94,7 @@ export class Game {
     connection.state.addEventListener('message', this.#onMessage);
     connection.onLost = () => this.#end('Lost the connection to the server.');
     this.#keyboard.attach();
+    window.addEventListener('beforeunload', this.#confirmLeave);
     this.#frame = requestAnimationFrame(this.#loop);
   }
 
@@ -105,6 +106,7 @@ export class Game {
     this.#stopped = true;
     cancelAnimationFrame(this.#frame);
     this.#keyboard.detach();
+    window.removeEventListener('beforeunload', this.#confirmLeave);
     this.#connection.control.removeEventListener('message', this.#onMessage);
     this.#connection.state.removeEventListener('message', this.#onMessage);
     this.#connection.close();
@@ -119,6 +121,14 @@ export class Game {
       this.#onEnd(reason);
     }
   }
+
+  /**
+   * Asks before the tab closes mid-game. Firing is Left Ctrl and forward is W, and browsers
+   * do not let pages intercept Ctrl+W (Chrome) or Ctrl+Q (Firefox).
+   */
+  readonly #confirmLeave = (event: BeforeUnloadEvent): void => {
+    event.preventDefault();
+  };
 
   readonly #loop = (now: number): void => {
     if (this.#stopped) {
