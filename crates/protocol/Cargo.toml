@@ -1,0 +1,21 @@
+[package]
+name = "protocol"
+description = "Wire types shared by the lobby, the gameserver and the client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[features]
+ts-export = ["dep:ts-rs"]
+
+[dependencies]
+postcard.workspace = true
+serde.workspace = true
+ts-rs = { workspace = true, optional = true }
+
+[dev-dependencies]
+serde_json.workspace = true
+
+[lints]
+workspace = true

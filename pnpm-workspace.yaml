@@ -1,0 +1,17 @@
+packages:
+  - apps/client
+  - crates/sim-wasm
+
+# Install scripts are blocked unless listed here.
+allowBuilds:
+  # Downloads the matching wasm-pack release binary from github.com/wasm-bindgen/wasm-pack.
+  wasm-pack: true
+
+permissions:
+  pixi.js:
+    skills: true
+
+skills:
+  dirs:
+    - .agents/skills
+    - .claude/skills

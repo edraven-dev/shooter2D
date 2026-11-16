@@ -1,0 +1,20 @@
+{
+  "name": "@shooter2d/sim-wasm",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The Rust simulation and wire codec compiled to WebAssembly (built by wasm-pack into pkg/)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./pkg/sim_wasm.d.ts",
+      "default": "./pkg/sim_wasm.js"
+    }
+  },
+  "scripts": {
+    "build": "wasm-pack build --target web --release --no-pack --out-dir pkg",
+    "build:dev": "wasm-pack build --target web --dev --no-pack --out-dir pkg"
+  },
+  "devDependencies": {
+    "wasm-pack": "^0.15.1"
+  }
+}

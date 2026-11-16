@@ -1,0 +1,40 @@
+{
+  "name": "shooter2d",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Top-down multiplayer shooter: Rust lobby and gameservers talking WebRTC to a TypeScript client",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.ts",
+    "build": "pnpm -r run build && cargo build --release -p lobby -p gameserver",
+    "build:wasm": "pnpm --filter @shooter2d/sim-wasm run build",
+    "check": "pnpm run fmt:check && pnpm run lint && pnpm run typecheck && pnpm run test",
+    "fmt": "oxfmt && cargo fmt --all",
+    "fmt:check": "oxfmt --check && cargo fmt --all -- --check",
+    "lint": "pnpm run build:wasm && oxlint --type-aware --deny-warnings && cargo clippy --workspace --all-targets -- -D warnings",
+    "typecheck": "pnpm run build:wasm && tsc -p scripts && pnpm -r run typecheck",
+    "test": "pnpm run build:wasm && pnpm -r run test && cargo test --workspace",
+    "protocol:types": "cargo test -p protocol --features ts-export export_bindings && oxfmt apps/client/src/protocol"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": "^7.0.2007",
+    "typescript": "^7.0.2"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.21.0",
+      "onFail": "download"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "26.13.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.21.0"
+}
